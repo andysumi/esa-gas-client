@@ -15,6 +15,8 @@
     };
 
     EsaClient.prototype.getSpecificPost = function (postId, params) {
+      if (!postId) throw new Error('"postId"は必須です');
+
       var query = this.buildUrlParam_(params);
       return this.fetch_(Utilities.formatString('/teams/%s/posts/%s?%s', this.team, postId, query), { method: 'get' });
     };
@@ -29,6 +31,12 @@
       return this.fetch_(Utilities.formatString('/teams/%s/posts', this.team), { method: 'post', payload: { post: post } });
     };
 
+    EsaClient.prototype.deletePost = function (postId) {
+      if (!postId) throw new Error('"postId"は必須です');
+
+      return this.fetch_(Utilities.formatString('/teams/%s/posts/%s', this.team, postId), { method: 'delete' });
+    };
+
     EsaClient.prototype.buildUrlParam_ = function (params) {
       var temp = [];
       for (var key in params) {
@@ -37,16 +45,34 @@
       return temp.join('&');
     };
 
+    EsaClient.prototype.isJSON_ = function (arg) {
+      if (typeof arg !== 'string') {
+        return false;
+      }
+
+      try {
+        arg = JSON.parse(arg);
+        return true;
+      } catch (err) {
+        return false;
+      }
+    };
+
     EsaClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
-      var response = UrlFetchApp.fetch(url, {
+      var contents = UrlFetchApp.fetch(url, {
         method:             options.method,
         muteHttpExceptions: true,
         contentType:        'application/json; charset=utf-8',
         headers:            this.headers,
         payload:            JSON.stringify(options.payload) || {}
-      });
-      return JSON.parse(response.getContentText());
+      }).getContentText();
+
+      if (!this.isJSON_(contents)) {
+        return contents;
+      }
+
+      return JSON.parse(contents);
     };
 
     return EsaClient;

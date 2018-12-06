@@ -39,3 +39,13 @@ function getSpecificPost(postId, params) { // eslint-disable-line no-unused-vars
 function createPost(name, options) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
+
+/**
+ * 記事を削除する
+ * @param {Integer} postId 【必須】記事ID
+ * @return {String} 処理結果
+ * https://docs.esa.io/posts/102#DELETE /v1/teams/:team_name/posts/:post_number
+ */
+function deletePost(postId) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
