@@ -9,6 +9,11 @@
       if (!team) throw new Error('"team"は必須です');
     }
 
+    EsaClient.prototype.getPosts = function (params) {
+      var query = this.buildUrlParam_(params);
+      return this.fetch_(Utilities.formatString('/teams/%s/posts?%s', this.team, query), { method: 'get' });
+    };
+
     EsaClient.prototype.getSpecificPost = function (postId, params) {
       var query = this.buildUrlParam_(params);
       return this.fetch_(Utilities.formatString('/teams/%s/posts/%s?%s', this.team, postId, query), {method: 'get'});
