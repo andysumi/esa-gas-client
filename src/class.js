@@ -4,20 +4,22 @@
       this.apiUrl = 'https://api.esa.io/v1';
       this.headers = {Authorization: 'Bearer ' + token};
       this.team = team;
+
       if (!token) throw new Error('"token"は必須です');
       if (!team) throw new Error('"team"は必須です');
     }
 
-    EsaClient.prototype.getSpecificPost = function (postId) {
-      return this.fetch_(Utilities.formatString('/teams/%s/posts/%s', this.team, postId), {method: 'get'});
+    EsaClient.prototype.getSpecificPost = function (postId, params) {
+      var query = this.buildUrlParam_(params);
+      return this.fetch_(Utilities.formatString('/teams/%s/posts/%s?%s', this.team, postId, query), {method: 'get'});
     };
 
-    EsaClient.prototype.buildUrlParam_ = function (options) {
-      var params = [];
-      for (var key in options) {
-        params.push(Utilities.formatString('%s=%s', key, encodeURIComponent(options[key])));
+    EsaClient.prototype.buildUrlParam_ = function (params) {
+      var temp = [];
+      for (var key in params) {
+        temp.push(Utilities.formatString('%s=%s', key, encodeURIComponent(params[key])));
       }
-      return params.join('&');
+      return temp.join('&');
     };
 
     EsaClient.prototype.fetch_ = function (endPoint, options) {

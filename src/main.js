@@ -11,8 +11,10 @@ function create(token, team) { // eslint-disable-line no-unused-vars
 /**
  * 特定の記事の情報を取得する
  * @param {Integer} postId 【必須】記事ID
+ * @param {Object} params 【任意】クエリ文字列(API Document参照)
  * @return {Object} 記事のオブジェクト
+ * https://docs.esa.io/posts/102#GET /v1/teams/:team_name/posts/:post_number
  */
-function getSpecificPost(postId) { // eslint-disable-line no-unused-vars
+function getSpecificPost(postId, params) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
