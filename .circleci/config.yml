@@ -5,12 +5,12 @@ references:
     working_directory: ~/project
     docker:
       - image: circleci/node:10.14.1
-   create-clasp-files: &create-clasp-files
+  create-clasp-files: &create-clasp-files
     run:
-        name: create clasp setting files
-        command: |
-          echo $CRASP_AUTH > ~/.clasprc.json
-          echo $CRASP_CONFIG > .clasp.json
+      name: create clasp setting files
+      command: |
+        echo $CRASP_AUTH > ~/.clasprc.json
+        echo $CRASP_CONFIG > .clasp.json
 
 jobs:
   test:
