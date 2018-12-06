@@ -28,3 +28,14 @@ function getPosts(params) { // eslint-disable-line no-unused-vars
 function getSpecificPost(postId, params) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
+
+/**
+ * 記事を作成する
+ * @param {String} name 【必須】記事名
+ * @param {Object} options 【任意】その他の項目(API Document参照)
+ * @return {Object} 記事のオブジェクト
+ * https://docs.esa.io/posts/102#POST /v1/teams/:team_name/posts
+ */
+function createPost(name, options) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
