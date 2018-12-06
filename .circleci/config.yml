@@ -4,13 +4,13 @@ references:
   container_config: &container_config
     working_directory: ~/project
     docker:
-      - image: circleci/node:10.14.1
+      - image: circleci/node:8.12.0
   create-clasp-files: &create-clasp-files
     run:
-      name: create clasp setting files
-      command: |
-        echo $CRASP_AUTH > ~/.clasprc.json
-        echo $CRASP_CONFIG > .clasp.json
+        name: create clasp setting files
+        command: |
+          echo $CRASP_AUTH > ~/.clasprc.json
+          echo $CRASP_CONFIG > .clasp.json
 
 jobs:
   test:
@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Lint check
           command: npx eslint src
-   upload:
+  upload:
     <<: *container_config
     steps:
       - checkout
@@ -39,7 +39,7 @@ jobs:
       - run:
           name: upload files
           command: npx clasp push
-   deploy:
+  deploy:
     <<: *container_config
     steps:
       - checkout
@@ -54,7 +54,7 @@ jobs:
 
 workflows:
   version: 2
-   test-and-deploy:
+  test-and-deploy:
     jobs:
       - test:
           filters:
