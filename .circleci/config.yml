@@ -38,7 +38,7 @@ jobs:
       - *create-clasp-files
       - run:
           name: upload files
-          command: npx clasp push
+          command: npx @google/clasp push
   deploy:
     <<: *container_config
     steps:
@@ -50,7 +50,7 @@ jobs:
           name: create version
           command: |
             change_log=$(tail -1 version_history | sed -e "s/^[0-9]*[[:blank:]]-[[:blank:]]\(.*\)$/\1/g")
-            npx clasp version $change_log
+            npx @google/clasp version $change_log
 
 workflows:
   version: 2
