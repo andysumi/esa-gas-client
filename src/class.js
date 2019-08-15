@@ -31,10 +31,11 @@
       return this.fetch_(Utilities.formatString('/teams/%s/posts', this.team), { method: 'post', payload: { post: post } });
     };
 
-    EsaClient.prototype.createPostFromTemplate = function (templeteId) {
-      if (!templeteId) throw new Error('"templeteId"は必須です');
+    EsaClient.prototype.createPostFromTemplate = function (templetePostId) {
+      if (!templetePostId) throw new Error('"templetePostId"は必須です');
 
-      return this.fetch_(Utilities.formatString('/teams/%s/posts/%d', this.team,templeteId), { method: 'post' });
+      var post = { template_post_id: templetePostId};
+      return this.fetch_(Utilities.formatString('/teams/%s/posts', this.team), { method: 'post', payload: { post: post } });
     };
 
     EsaClient.prototype.deletePost = function (postId) {
