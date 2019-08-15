@@ -41,6 +41,16 @@ function createPost(name, options) { // eslint-disable-line no-unused-vars
 }
 
 /**
+ * テンプレートから記事を作成する
+ * @param {Integer} templeteId 【必須】テンプレートの記事ID
+ * @return {Object} 記事のオブジェクト
+ * https://docs.esa.io/posts/102#POST /v1/teams/:team_name/posts
+ */
+function createPostFromTemplate(templeteId) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
  * 記事を削除する
  * @param {Integer} postId 【必須】記事ID
  * @return {String} 処理結果
