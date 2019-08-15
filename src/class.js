@@ -31,6 +31,13 @@
       return this.fetch_(Utilities.formatString('/teams/%s/posts', this.team), { method: 'post', payload: { post: post } });
     };
 
+    EsaClient.prototype.createPostFromTemplate = function (templetePostId) {
+      if (!templetePostId) throw new Error('"templetePostId"は必須です');
+
+      var post = { template_post_id: templetePostId};
+      return this.fetch_(Utilities.formatString('/teams/%s/posts', this.team), { method: 'post', payload: { post: post } });
+    };
+
     EsaClient.prototype.deletePost = function (postId) {
       if (!postId) throw new Error('"postId"は必須です');
 
